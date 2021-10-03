@@ -7,6 +7,26 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <TabControl>
+            <TabItem Header="Получение метрик агента">
+                <Grid Background="#FFE5E5E5">
+                    <ComboBox HorizontalAlignment="Left" Margin="262,10,0,0" VerticalAlignment="Top" Width="200"/>
+                    <DatePicker HorizontalAlignment="Left" Margin="143,58,0,0" VerticalAlignment="Top" Width="199"/>
+                    <DatePicker HorizontalAlignment="Left" Margin="422,58,0,0" VerticalAlignment="Top" Width="189"/>
+                    <Button Content="Button" HorizontalAlignment="Left" Height="22" Margin="479,10,0,0" VerticalAlignment="Top" Width="75" Foreground="Black"/>
+                    <ListView HorizontalAlignment="Left" Height="231" Margin="48,142,0,0" VerticalAlignment="Top" Width="711">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
 
+                </Grid>
+            </TabItem>
+            <TabItem Header="Получение метрик всех агентов">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
