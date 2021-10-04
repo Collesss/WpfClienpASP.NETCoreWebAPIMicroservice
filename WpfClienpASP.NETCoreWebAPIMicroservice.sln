@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfClienpASP.NETCoreWebAPIMicroservice", "WpfClienpASP.NETCoreWebAPIMicroservice\WpfClienpASP.NETCoreWebAPIMicroservice.csproj", "{76CCDDEE-B4FA-4C8E-84BC-4E8697BD9A8C}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntitiesMetricsManager", "EntitiesMetricsManager\EntitiesMetricsManager.csproj", "{C4528DB4-C0FB-4109-AC70-3EF228AF0F0F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBMetricsManager", "DBMetricsManager\DBMetricsManager.csproj", "{0ABC4820-FF7C-427C-90A3-552560ACD601}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{76CCDDEE-B4FA-4C8E-84BC-4E8697BD9A8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76CCDDEE-B4FA-4C8E-84BC-4E8697BD9A8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76CCDDEE-B4FA-4C8E-84BC-4E8697BD9A8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4528DB4-C0FB-4109-AC70-3EF228AF0F0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4528DB4-C0FB-4109-AC70-3EF228AF0F0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4528DB4-C0FB-4109-AC70-3EF228AF0F0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4528DB4-C0FB-4109-AC70-3EF228AF0F0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0ABC4820-FF7C-427C-90A3-552560ACD601}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ABC4820-FF7C-427C-90A3-552560ACD601}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0ABC4820-FF7C-427C-90A3-552560ACD601}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0ABC4820-FF7C-427C-90A3-552560ACD601}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
