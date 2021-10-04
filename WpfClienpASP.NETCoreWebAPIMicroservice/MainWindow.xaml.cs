@@ -1,6 +1,11 @@
-﻿using System;
+﻿using DBMetricsManager;
+using EntitiesMetricsManager;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,6 +18,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace WpfClienpASP.NETCoreWebAPIMicroservice
 {
     /// <summary>
@@ -20,9 +26,25 @@ namespace WpfClienpASP.NETCoreWebAPIMicroservice
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly IHttpClientFactory httpClientFactory;
+
         public MainWindow()
         {
             InitializeComponent();
+
+
+        }
+
+        public async Task UpdateAgentsList_Click(object sender, EventArgs e)
+        {
+            Debug.WriteLine("Click update agents list");
+
+            using(IServiceScope scope = ServicesSingleton.Services.CreateScope())
+            {
+                IRepositoryAgents<MetricAgent> repositoryAgents = scope.ServiceProvider.GetRequiredService<IRepositoryAgents<MetricAgent>>();
+
+                AgentsList.ItemsSource = await repositoryAgents.GetAll();
+            }
         }
     }
 }

@@ -22,15 +22,15 @@
                                     <ColumnDefinition Width="2*"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <ComboBox Grid.Column="0" Margin="0 0 10 0"/>
-                                <Button Grid.Column="1" Content="Update Agents List" Padding="5 0 5 0" Width="Auto" Foreground="Black"/>
+                                <ComboBox x:Name="AgentsList" Grid.Column="0" Margin="0 0 10 0"/>
+                                <Button x:Name="UpdateAgentsList" Grid.Column="1" Content="Update Agents List" Padding="5 0 5 0" Width="Auto" Foreground="Black"/>
                             </Grid>
                         </Grid>
                         <UniformGrid Rows="2" Columns="2">
                             <Label Content="From" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" Margin="20 0 20 0" MinWidth="150" MaxWidth="350"/>
                             <Label Content="To" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" Margin="20 0 20 0" MinWidth="150" MaxWidth="350"/>
-                            <DatePicker HorizontalAlignment="Stretch" Margin="20 0 20 0" MinWidth="150" MaxWidth="350"/>
-                            <DatePicker HorizontalAlignment="Stretch" Margin="20 0 20 0" MinWidth="150" MaxWidth="350"/>
+                            <DatePicker x:Name="From" HorizontalAlignment="Stretch" Margin="20 0 20 0" MinWidth="150" MaxWidth="350"/>
+                            <DatePicker x:Name="To" HorizontalAlignment="Stretch" Margin="20 0 20 0" MinWidth="150" MaxWidth="350"/>
                         </UniformGrid>
                     </StackPanel>
                     <ListView>
@@ -40,12 +40,26 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-
                 </DockPanel>
             </TabItem>
             <TabItem Header="Получение метрик всех агентов">
-                <Grid Background="#FFE5E5E5">
-                </Grid>
+                <DockPanel Background="#FFE5E5E5">
+                    <StackPanel DockPanel.Dock="Top" Margin="0 0 0 10">
+                        <UniformGrid Rows="2" Columns="2">
+                            <Label Content="From" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" Margin="20 0 20 0" MinWidth="150" MaxWidth="350"/>
+                            <Label Content="To" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" Margin="20 0 20 0" MinWidth="150" MaxWidth="350"/>
+                            <DatePicker x:Name="FromAll" HorizontalAlignment="Stretch" Margin="20 0 20 0" MinWidth="150" MaxWidth="350"/>
+                            <DatePicker x:Name="ToAll" HorizontalAlignment="Stretch" Margin="20 0 20 0" MinWidth="150" MaxWidth="350"/>
+                        </UniformGrid>
+                    </StackPanel>
+                    <ListView>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </DockPanel>
             </TabItem>
         </TabControl>
     </Grid>

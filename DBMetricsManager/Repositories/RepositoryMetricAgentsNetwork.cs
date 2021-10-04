@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using Entities;
-using EntitiesMetricsManager;
+﻿using EntitiesMetricsManager;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -8,11 +6,10 @@ using System.Text;
 
 namespace DBMetricsManager
 {
-    public class RepositoryMetricAgentsNetwork : RepositoryMetricAgents<NetworkMetricAgent, NetworkMetric>
+    public class RepositoryMetricAgentsNetwork : RepositoryMetricAgents<NetworkMetricAgent>
     {
         protected override string BaseRoute => $"{base.BaseRoute}NetworkMetric";
-        public RepositoryMetricAgentsNetwork(IRepositoryAgents<MetricAgent> repository, IMapper mapper, IHttpClientFactory httpClientFactory) :
-            base(repository, mapper, httpClientFactory)
-        { }
+        public RepositoryMetricAgentsNetwork(IHttpClientFactory httpClientFactory, Uri addressServer) :
+            base(httpClientFactory, addressServer) { }
     }
 }

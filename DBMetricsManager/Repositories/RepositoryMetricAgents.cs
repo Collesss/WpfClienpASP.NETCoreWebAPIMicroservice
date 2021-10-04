@@ -36,36 +36,35 @@ namespace DBMetricsManager
         }
         */
 
-        private async Task<HttpResponseMessage> GetHttpResponseMessage(DateTime from, DateTime to, int idAgent = 0)
+        private async Task<HttpResponseMessage> GetHttpResponseMessage(string path)
         {
             UriBuilder uriBuilder = new UriBuilder(_addressServer);
 
             //RouteEntityAttribute routeEntityAttribute = (RouteEntityAttribute)Attribute.GetCustomAttribute(typeof(TEntity), typeof(RouteEntityAttribute));
             //uriBuilder.Path = $"api/{routeEntityAttribute.GetRoute(typeof(TEntity).Name)}/from/{from:yyyy-MM-ddTHH:mm:ss.FFFFFFF}/to/{to:yyyy-MM-ddTHH:mm:ss.FFFFFFF}";
 
-            uriBuilder.Path = $"{BaseRoute}{(idAgent != 0 ? $"agent/{idAgent}" : "")}/from/{from}/to/{to}";
+            //uriBuilder.Path = $"{BaseRoute}{(idAgent != 0 ? $"agent/{idAgent}" : "")}/from/{from}/to/{to}";
+            uriBuilder.Path = path;
 
             return await _httpClientFactory.CreateClient("MetricAgent").SendAsync(new HttpRequestMessage(HttpMethod.Get, uriBuilder.Uri));
         }
 
         async Task<IEnumerable<TEntity>> IRepositoryMetricAgents<TEntity>.GetMetricFromAgent(int id, DateTime from, DateTime to)
         {
-            HttpResponseMessage httpResponse = await GetHttpResponseMessage(from, to, id);
+            HttpResponseMessage httpResponse = await GetHttpResponseMessage($"{BaseRoute}/agent/{id}/from/{from}/to/{to}");
 
-            if (httpResponse.IsSuccessStatusCode)
-                return await JsonSerializer.DeserializeAsync<TEntity[]>(await httpResponse.Content.ReadAsStreamAsync(), new JsonSerializerOptions(JsonSerializerDefaults.Web));
-
-            return new TEntity[0];
+           return httpResponse.IsSuccessStatusCode ?
+                await JsonSerializer.DeserializeAsync<TEntity[]>(await httpResponse.Content.ReadAsStreamAsync(), new JsonSerializerOptions(JsonSerializerDefaults.Web)) :
+                new TEntity[0];
         }
 
         async Task<IEnumerable<TEntity>> IRepositoryMetricAgents<TEntity>.GetMetricFromAgents(DateTime from, DateTime to)
         {
-            HttpResponseMessage httpResponse = await GetHttpResponseMessage(from, to);
+            HttpResponseMessage httpResponse = await GetHttpResponseMessage($"{BaseRoute}/from/{from}/to/{to}");
 
-            if (httpResponse.IsSuccessStatusCode)
-                return await JsonSerializer.DeserializeAsync<TEntity[]>(await httpResponse.Content.ReadAsStreamAsync(), new JsonSerializerOptions(JsonSerializerDefaults.Web));
-
-            return new TEntity[0];
+            return httpResponse.IsSuccessStatusCode ?
+                 await JsonSerializer.DeserializeAsync<TEntity[]>(await httpResponse.Content.ReadAsStreamAsync(), new JsonSerializerOptions(JsonSerializerDefaults.Web)) :
+                 new TEntity[0];
         }
     }
 }

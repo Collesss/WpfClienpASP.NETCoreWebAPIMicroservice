@@ -9,6 +9,6 @@ namespace DBMetricsManager
 {
     public interface IRepositoryAgents<TEntity> where TEntity : BaseEntity
     {
-        IEnumerable<TEntity> GetAll();
+        Task<IEnumerable<TEntity>> GetAll();
     }
 }
