@@ -2,6 +2,7 @@
 using EntitiesMetricsManager;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -45,7 +46,7 @@ namespace WpfClienpASP.NETCoreWebAPIMicroservice
             {
                 IRepositoryAgents<MetricAgent> repositoryAgents = scope.ServiceProvider.GetRequiredService<IRepositoryAgents<MetricAgent>>();
 
-                AgentsList.ItemsSource = await repositoryAgents.GetAll();
+                AgentsList.ItemsSource = (await repositoryAgents.GetAll()).Select(ma => $"{ma.Id}: {ma.AddressAgent.Host}");
             }
 
             UpdateAgentsList.IsEnabled = true;
