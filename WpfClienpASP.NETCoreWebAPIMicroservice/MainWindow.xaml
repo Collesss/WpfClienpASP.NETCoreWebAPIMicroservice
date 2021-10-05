@@ -23,7 +23,7 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <ComboBox x:Name="AgentsList" Grid.Column="0" Margin="0 0 10 0"/>
-                                <Button x:Name="UpdateAgentsList" Grid.Column="1" Content="Update Agents List" Padding="5 0 5 0" Width="Auto" Foreground="Black"/>
+                                <Button x:Name="UpdateAgentsList" Click="UpdateAgentsList_Click" Grid.Column="1" Content="Update Agents List" Padding="5 0 5 0" Width="Auto" Foreground="Black"/>
                             </Grid>
                         </Grid>
                         <UniformGrid Rows="2" Columns="2">

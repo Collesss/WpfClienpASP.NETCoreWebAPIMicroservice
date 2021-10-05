@@ -26,25 +26,29 @@ namespace WpfClienpASP.NETCoreWebAPIMicroservice
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly IHttpClientFactory httpClientFactory;
+        private readonly IServiceProvider _serviceProvider;
 
-        public MainWindow()
+        public MainWindow(IServiceProvider serviceProvider)
         {
             InitializeComponent();
 
-
+            _serviceProvider = serviceProvider;
         }
 
-        public async Task UpdateAgentsList_Click(object sender, EventArgs e)
+        public async void UpdateAgentsList_Click(object sender, EventArgs e)
         {
             Debug.WriteLine("Click update agents list");
 
-            using(IServiceScope scope = ServicesSingleton.Services.CreateScope())
+            UpdateAgentsList.IsEnabled = false;
+
+            using(IServiceScope scope = _serviceProvider.CreateScope())
             {
                 IRepositoryAgents<MetricAgent> repositoryAgents = scope.ServiceProvider.GetRequiredService<IRepositoryAgents<MetricAgent>>();
 
                 AgentsList.ItemsSource = await repositoryAgents.GetAll();
             }
+
+            UpdateAgentsList.IsEnabled = true;
         }
     }
 }
