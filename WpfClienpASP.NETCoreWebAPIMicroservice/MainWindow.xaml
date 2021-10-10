@@ -33,13 +33,7 @@
                             <DatePicker x:Name="To" HorizontalAlignment="Stretch" Margin="20 0 20 0" MinWidth="150" MaxWidth="350"/>
                         </UniformGrid>
                     </StackPanel>
-                    <ListView>
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn/>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                    <local:CardMetric></local:CardMetric>
                 </DockPanel>
             </TabItem>
             <TabItem Header="Получение метрик всех агентов">
