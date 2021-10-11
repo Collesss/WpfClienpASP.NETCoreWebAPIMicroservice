@@ -18,7 +18,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using LiveCharts;
+using LiveCharts.Wpf;
+using LiveCharts.Defaults;
 
 namespace WpfClienpASP.NETCoreWebAPIMicroservice
 {
@@ -29,9 +31,32 @@ namespace WpfClienpASP.NETCoreWebAPIMicroservice
     {
         private readonly IServiceProvider _serviceProvider;
 
+        public SeriesCollection SeriesCollection { get; set;}
+
         public MainWindow(IServiceProvider serviceProvider)
         {
             InitializeComponent();
+
+            SeriesCollection = new SeriesCollection()
+            {
+                new LineSeries
+                {
+                    Values = new ChartValues<DateTimePoint>
+                    {
+                        new DateTimePoint(DateTime.Now.AddDays(0), 10),
+                        new DateTimePoint(DateTime.Now.AddDays(1), 20),
+                        new DateTimePoint(DateTime.Now.AddDays(2), 30),
+                        new DateTimePoint(DateTime.Now.AddDays(3), 40),
+                        new DateTimePoint(DateTime.Now.AddDays(4), 50),
+                        new DateTimePoint(DateTime.Now.AddDays(5), 40),
+                        new DateTimePoint(DateTime.Now.AddDays(6), 60),
+                        new DateTimePoint(DateTime.Now.AddDays(7), 20),
+                        new DateTimePoint(DateTime.Now.AddDays(10), 100)
+                    }
+                }
+            };
+
+            DataContext = this;
 
             _serviceProvider = serviceProvider;
         }

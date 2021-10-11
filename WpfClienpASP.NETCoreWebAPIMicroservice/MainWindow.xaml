@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfClienpASP.NETCoreWebAPIMicroservice"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -33,7 +34,9 @@
                             <DatePicker x:Name="To" HorizontalAlignment="Stretch" Margin="20 0 20 0" MinWidth="150" MaxWidth="350"/>
                         </UniformGrid>
                     </StackPanel>
-                    <local:CardMetric></local:CardMetric>
+                    <lvc:CartesianChart Series="{Binding SeriesCollection}">
+                        
+                    </lvc:CartesianChart>
                 </DockPanel>
             </TabItem>
             <TabItem Header="Получение метрик всех агентов">
