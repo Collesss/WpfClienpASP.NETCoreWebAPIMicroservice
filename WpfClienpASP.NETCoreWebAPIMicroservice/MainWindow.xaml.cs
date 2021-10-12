@@ -31,30 +31,40 @@ namespace WpfClienpASP.NETCoreWebAPIMicroservice
     {
         private readonly IServiceProvider _serviceProvider;
 
-        public SeriesCollection SeriesCollection { get; set;}
+
+        public SeriesCollection SeriesCollection { get; set; }
+
+        public Func<double, string> XFormatter { get; set; }
+        public Func<double, string> YFormatter { get; set; }
 
         public MainWindow(IServiceProvider serviceProvider)
         {
             InitializeComponent();
 
+            Random random = new Random();
+
+            int cpu = 50;
+
             SeriesCollection = new SeriesCollection()
             {
                 new LineSeries
                 {
-                    Values = new ChartValues<DateTimePoint>
-                    {
-                        new DateTimePoint(DateTime.Now.AddDays(0), 10),
-                        new DateTimePoint(DateTime.Now.AddDays(1), 20),
-                        new DateTimePoint(DateTime.Now.AddDays(2), 30),
-                        new DateTimePoint(DateTime.Now.AddDays(3), 40),
-                        new DateTimePoint(DateTime.Now.AddDays(4), 50),
-                        new DateTimePoint(DateTime.Now.AddDays(5), 40),
-                        new DateTimePoint(DateTime.Now.AddDays(6), 60),
-                        new DateTimePoint(DateTime.Now.AddDays(7), 20),
-                        new DateTimePoint(DateTime.Now.AddDays(10), 100)
-                    }
+                    Title = "Cpu Load",
+                    MinHeight = 0,
+                    MaxHeight = 100,
+                    Values = new ChartValues<DateTimePoint>(Enumerable.Range(0, 1000).Select(i =>
+                    new DateTimePoint(
+                        DateTime.Now.AddSeconds(i),
+                        cpu = Math.Clamp(cpu + random.Next(-40, 40), 0, 100))
+                        ))
                 }
             };
+
+            XFormatter = data =>
+                new DateTime((long)data).ToString();
+
+            YFormatter = data =>
+                String.Format("{0,2:f}%", data);
 
             DataContext = this;
 
